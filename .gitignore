@@ -23,3 +23,7 @@ results/deseq2/*
 
 results/gsea/*
 !results/gsea/README.md
+
+# --- Manuscript drafts (kept locally, not deposited) ---
+manuscript/
+*.docx

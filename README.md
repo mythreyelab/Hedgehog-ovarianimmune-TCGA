@@ -7,7 +7,6 @@ This repository packages the final paper-facing Hedgehog and immune-correlation 
 ## Included
 
 - final paper figures in `results/figures/`
-- paper-ready figure legends and methods in `manuscript/`
 - figure-generating R scripts in `scripts/07_make_hedgehog_immune_heatmap.R` and `scripts/08_make_ratio_method_figures.R`
 - modular RNA-seq workflow scripts in `scripts/00_bootstrap_renv.R` through `scripts/06_run_all.R`
 - configuration and metadata templates in `config/` and `data/metadata/`
@@ -27,7 +26,6 @@ This repository packages the final paper-facing Hedgehog and immune-correlation 
 - `data/metadata/`: sample metadata included with the workflow
 - `data/raw_counts/`: placeholder for raw RNA-seq count matrix
 - `data/tcga_expression/`: placeholder for the TCGA expression matrix used by the figure scripts
-- `manuscript/`: figure legends and methods text
 - `renv/`: renv bootstrap notes
 - `results/figures/`: final figure files included in the paper package
 - `results/manifests/`: code-to-figure traceability manifests
