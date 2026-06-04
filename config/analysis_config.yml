@@ -1,0 +1,56 @@
+project:
+  name: "MAPK15 RNA-seq final workflow"
+  organism: "Homo sapiens"
+  note: "STAR and featureCounts versions are placeholders until verified from the original alignment pipeline."
+
+inputs:
+  count_matrix: "data/raw_counts/featurecounts_gene_counts.tsv"
+  metadata_file: "data/metadata/sample_metadata_confirmed_local.csv"
+  sample_id_column: "sample_id"
+  gene_id_column: "gene_id"
+  annotation_columns:
+    - "gene_id"
+    - "gene_name"
+
+methods:
+  alignment_tool: "STAR"
+  alignment_version: "VERIFY_VERSION"
+  counting_tool: "featureCounts"
+  counting_version: "VERIFY_VERSION"
+  sample_description: "16 RNA-seq libraries: 4 PCEFL 2D, 4 PCEFL suspension 24 hr, 4 MAPK15OE 2D, and 4 MAPK15OE suspension 24 hr."
+
+design:
+  design_formula: "~ batch + condition"
+  batch_column: "batch"
+  condition_column: "condition"
+  local_confirmed_factorial_design: "~ mapk15_status * attachment_state"
+  note: "The default template follows the requested batch-plus-condition layout. The local archived sample sheets support a 2 x 2 factorial design and may need that formula instead."
+
+thresholds:
+  padj: 0.05
+  abs_log2fc: 1
+
+contrasts:
+  - name: "MAPK15OE_vs_PCEFL_in_2D"
+    factor: "condition"
+    numerator: "MAPK15OE_2D"
+    denominator: "PCEFL_2D"
+  - name: "MAPK15OE_vs_PCEFL_in_Suspension_24hr"
+    factor: "condition"
+    numerator: "MAPK15OE_Suspension_24hr"
+    denominator: "PCEFL_Suspension_24hr"
+  - name: "Suspension_vs_2D_in_PCEFL"
+    factor: "condition"
+    numerator: "PCEFL_Suspension_24hr"
+    denominator: "PCEFL_2D"
+  - name: "Suspension_vs_2D_in_MAPK15OE"
+    factor: "condition"
+    numerator: "MAPK15OE_Suspension_24hr"
+    denominator: "MAPK15OE_2D"
+
+gsea:
+  species: "Homo sapiens"
+  category: "H"
+  min_size: 10
+  max_size: 500
+  nperm: 10000

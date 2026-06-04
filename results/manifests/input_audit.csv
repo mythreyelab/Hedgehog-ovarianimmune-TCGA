@@ -1,0 +1,9 @@
+item,value
+metadata_file_present,TRUE
+count_matrix_present,FALSE
+n_samples_in_metadata,16
+unique_conditions,4
+alignment_version_verified,FALSE
+featurecounts_version_verified,FALSE
+default_design_formula,~ batch + condition
+local_confirmed_factorial_design,~ mapk15_status * attachment_state
